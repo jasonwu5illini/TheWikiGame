@@ -40,7 +40,7 @@
 - Djikstra runs in O(E log V) time, where V is the number of nodes (pages we visit) in our subset and E is the number of connections between nodes. Again, the number of nodes and edges are only those that are within our subset, not within the entire Wikipedia page space.
 
 
-## TimelineB
+## Timeline
 
 ##### Data Acquisition: 11/5
 
