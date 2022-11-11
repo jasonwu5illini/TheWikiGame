@@ -6,7 +6,7 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
     int startId = linkToId[startLocation];
     bfSQueue.push(startId);
     for(int i = 0; i <= 6; i++){
-        int degreeSize = bfSQueue.size();
+        int degreeSize = bfSQueue.size(); 
         for(int j = 0; j < degreeSize; j++){
             int adjacentId = degreeSize;
         }
