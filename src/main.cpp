@@ -1,3 +1,6 @@
+#include "TheWikiGame.cpp" 
+#include <iostream>
 int main() {
-    return 1; 
+    std::cout << "dank" << std::endl;
+    return 1;   
 }

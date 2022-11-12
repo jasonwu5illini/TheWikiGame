@@ -1,13 +1,12 @@
 
 CXX=clang++
-INCLUDES=-Iincludes/
 CXXFLAGS=-std=c++0x -g -fstandalone-debug
 
 exec: bin/exec
 
 
-bin/exec: ./src/main.cpp ./src/TheWikiGame.cpp ./includes/TheWikiGame.h 
-	$(CXX) $(CXXFLAGS) $(INCLUDES) ./src/driver.cc ./src/branched-linked-list.cc -o $@
+bin/exec: ./src/main.cpp ./src/TheWikiGame.cpp ./src/TheWikiGame.h 
+	$(CXX) $(CXXFLAGS) ./src/main.cpp ./src/TheWikiGame.cpp -o $@
 
 
 .DEFAULT_GOAL := exec

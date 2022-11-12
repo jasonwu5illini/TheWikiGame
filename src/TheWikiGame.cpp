@@ -1,7 +1,8 @@
-#include "../includes/TheWikiGame.h"
+#include "TheWikiGame.h"
 #include <queue>
 
 std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
+    /*
     std::queue<int>bfSQueue;
     int startId = linkToId[startLocation];
     bfSQueue.push(startId);
@@ -10,7 +11,7 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
         for(int j = 0; j < degreeSize; j++){
             int adjacentId = degreeSize;
         }
-    }
+    } **/
     return std::vector<std::vector<string>>();
 }
 
