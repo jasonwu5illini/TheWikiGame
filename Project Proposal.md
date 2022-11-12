@@ -1,4 +1,3 @@
-# Project Proposal
 ## Leading Question 
 
 - Wikipedia is a multilingual free online encyclopedia written and maintained by a community of volunteers through open collaboration and a wiki-based editing system. A fantastic way to entertain yourself when you’re bored is to play a game called the Wiki Game (more information can be found at https://www.thewikigame.com/group). The objective of the game is to traverse from one randomly generated Wikipedia page to another in either the shortest amount of time or the shortest number of clicks. However, due to the imperfection of the human mind, it is very unlikely that the user will be able to find the shortest path from one page to another. In our project, we will use graph algorithms and the current Wikipedia dataset to find the series of pages that takes the least amount of clicks and predict the series of pages that take the least amount of time.
@@ -38,6 +37,13 @@
 - Similar to BFS, we will return the shortest time path(s) within the subset of data we’re sampling using the idea of six degrees of separation. The output will be the list of shortest paths that will be visualized using our graph visualization algorithm.
 
 - Djikstra runs in O(E log V) time, where V is the number of nodes (pages we visit) in our subset and E is the number of connections between nodes. Again, the number of nodes and edges are only those that are within our subset, not within the entire Wikipedia page space.
+
+
+##### Graph Visualization
+
+- We will use draw a simple graph in a similar way to painting the canvas with mp_mazes. We will assign each vertex a center coordinate with a radius. So, each node will be drawn out as a circle with a certain radius. Then, we will connect the centers of these circles with lines, which will resemble the edges that connect the nodes to each other.
+
+- This tool will draw out all the shortest paths, and show the series of pages as nodes that allow us to reach our final destination.
 
 
 ## Timeline
