@@ -2,13 +2,13 @@
 #include <queue>
 
 std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
-    std::queue<int>bfSQueue;
+    std::queue<int>bfsQueue;
     int startId = linkToId[startLocation];
-    bfSQueue.push(startId);
+    bfsQueue.push(startId);
     int dist = 0;
     bool foundPath = false;
     while(dist < 6 && !foundPath){
-        int degreeSize = bfSQueue.size();
+        int degreeSize = bfsQueue.size();
         for(int j = 0; j < degreeSize; j++){
             int currentPage = bfsQueue.front();
             bfsQueue.pop();
