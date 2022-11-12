@@ -23,6 +23,7 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
         }
         dist++;
     }
+    
     std::cout<<dist<<std::endl;
     return std::vector<std::vector<string>>();
 }
