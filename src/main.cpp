@@ -5,4 +5,4 @@ int main() {
     TheWikiGame test = TheWikiGame();
     std::cout<<test.test()<<std::endl;
     return 1;
-}
+} 
