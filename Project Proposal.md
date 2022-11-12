@@ -22,7 +22,7 @@
 
 ## Algorithm 
 
-######Breadth First Search Traversal
+##### Breadth First Search Traversal
 
 - The inputs to all of our algorithms are the nodes (Wikipedia pages) and edges (which pages cite which other pages). To support our algorithms, we will create weighted directional graphs (directed edge arrays). We will write a BFS traversal, which allows us to traverse just the edges from each node, which is more optimized than a straight DFS which may go for a long time before it reaches a dead end or finishes a cycle of citations. The BFS traversal should output the shortest path(s) [counted in website clicks] from a starting page to an ending page. The graph will be a directed graph, as links to pages are one way, unless there is a link in the new page that goes back to the old page.
 
@@ -30,7 +30,7 @@
 
 - The efficiency of our graph will be O(V+E), where V is the number of nodes (pages we visit), and E is the number of edges/connections within the graph. It’s important to note that V and E are only for the subset of pages that we visit through BFS, not the entire set of data, which is much more expansive. This means unconnected nodes and nodes further than six degrees away will not be included in our traverse space.
 
-######Djikstra’s Shortest Path
+##### Djikstra’s Shortest Path
 
 - The inputs to our Djikstra’s algorithm is the same as above. This time, we will assume that the edges of our graphs are weighed differently. When playing the Wiki Game, the links at the top of a page receive much more attention and much quicker attention compared to the links at the bottom of the page. We will simulate this by parsing through the webpage and weighing the earlier links smaller compared to the later links. Djikstra’s algorithm will then be used to traverse the links and the edges/connections are weighted by the amount of scrolling time it takes to reach each link on the current page (roughly estimated). 
 
@@ -39,7 +39,7 @@
 - Djikstra runs in O(E log V) time, where V is the number of nodes (pages we visit) in our subset and E is the number of connections between nodes. Again, the number of nodes and edges are only those that are within our subset, not within the entire Wikipedia page space.
 
 
-######Graph Visualization
+##### Graph Visualization
 
 - We will use draw a simple graph in a similar way to painting the canvas with mp_mazes. We will assign each vertex a center coordinate with a radius. So, each node will be drawn out as a circle with a certain radius. Then, we will connect the centers of these circles with lines, which will resemble the edges that connect the nodes to each other.
 
@@ -48,23 +48,23 @@
 
 ## Timeline
 
-######Data Acquisition: 11/5
+##### Data Acquisition: 11/5
 
 This task consists of downloading the data, verifying its integrity, and getting a feel of the specific formatting.
 
-######Data Processing: 11/8
+##### Data Processing: 11/8
 
 This task consists of assigning all the article links to a number and storing it into a map (the key being the article link as a string and the value being the assigned int). We will also make a map of the inverse so we can lookup article links with the corresponding int. Then we will make a map with the key theoretically being the article link and the value being a vector of all the articles linked to it on the key article (adjacency list). However, in practice it will be an int and a vector of ints to save on storage. 
 
-######BFS: 11/11
+##### BFS: 11/11
 
 We will complete the BFS traverse algorithm that allows us to find the shortest click path(s) between two Wikipedia articles. This includes taking the input of the two randomly generated pages and returning the list of paths that work.
 
-######Djikstras: 11/18
+##### Djikstras: 11/18
 
 This task consists of implementing an algorithm that allows us to find the path that prioritizes articles that show up earlier on the webpage than later. We will assign different weights to the edges based on how far up the page the link shows up at. The function will be similar to that of the BFS, which takes in two pages and returns the list of paths that work. 
 
-#######Visualization: 11/25 
+##### Visualization: 11/25 
 This task consists of writing code to write the shortest path(s) to files from which they are taken and displayed in a visual format using python. They will be organized in a special format/order for presentability using a C++ algorithm before being written into the file.
 
 ##### Final Presentation and Report: 12/4
