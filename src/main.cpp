@@ -1,6 +1,8 @@
-#include "TheWikiGame.cpp" 
+#include "TheWikiGame.h" 
 #include <iostream>
 int main() {
     std::cout << "dank" << std::endl;
-    return 1;   
+    TheWikiGame test = TheWikiGame();
+    std::cout<<test.test()<<std::endl;
+    return 1;
 }

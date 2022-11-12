@@ -31,3 +31,7 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
 std::vector<std::vector<string>> TheWikiGame::djikstra(std::string startLocation, std::string endLocation) {
     return std::vector<std::vector<string>>();
 }
+
+int TheWikiGame::test(){
+    return 1;
+}
