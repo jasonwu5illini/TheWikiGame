@@ -5,7 +5,7 @@ CXXFLAGS=-std=c++0x -g -fstandalone-debug
 exec: bin/exec
 
 
-bin/exec: ./src/main.cpp ./src/TheWikiGame.cpp ./src/TheWikiGame.h 
+bin/exec: ./src/main.cpp ./src/TheWikiGame.cpp ./src/TheWikiGame.h
 	$(CXX) $(CXXFLAGS) ./src/main.cpp ./src/TheWikiGame.cpp -o $@
 
 
