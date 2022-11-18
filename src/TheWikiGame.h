@@ -7,7 +7,8 @@ using namespace std;
 
 class TheWikiGame{
     public:
-        std::vector<std::vector<std::string>> bfs(std::string startLocation, std::string endLocation);
+        TheWikiGame();
+        std::vector<std::string> bfs(std::string startLocation, std::string endLocation);
         std::vector<std::vector<std::string>> djikstra(std::string startLocation, std::string endLocation);
         int test();
     private:
