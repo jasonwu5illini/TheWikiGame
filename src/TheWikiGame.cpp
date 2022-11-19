@@ -1,11 +1,15 @@
 #include "TheWikiGame.h"
 #include <queue>
 
-std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
+TheWikiGame::TheWikiGame(){
+    std::cout<<"Use this to fill in maps"<<std::endl;
+}
+
+std::vector<string> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
     std::queue<int>bfsQueue;
     std::vector<string>shortestPath;
-    int[directedAdjacencyList.size()]prev;
-    bool[directedAdjacencyList.size()]visited;
+    int prev [directedAdjacencyList.size()];
+    bool visited [directedAdjacencyList.size()];
 
     //ID of starting page
 
@@ -26,7 +30,7 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
     //Begin BFS
     bfsQueue.push(startId);
     visited[startId] = true;
-    while(dist < 6 && !foundPath && !queue.empty()){
+    while(dist < 6 && !foundPath && !bfsQueue.empty()){
         int degreeSize = bfsQueue.size();
         for(int j = 0; j < degreeSize; j++){
             int currentPage = bfsQueue.front();
@@ -48,10 +52,11 @@ std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std
 
     int currId = endId;
     shortestPath.push_back(idToLink[currId]);
-    while(pred[currId] != -1){
-        std::string path = idToLink[pred[currId]];
+
+    while(prev[currId] != -1){
+        std::string path = idToLink[prev[currId]];
         shortestPath.push_back(path);
-        currId = pred[currId];
+        currId = prev[currId];
     }
     
     std::cout<<"The shortest distance is "<<dist<<std::endl;
