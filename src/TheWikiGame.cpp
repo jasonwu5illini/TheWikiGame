@@ -8,20 +8,18 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     if (wordsFile.is_open()) {
         std::cout << "file open" << std::endl;
         while (getline(wordsFile, word)) {
-            if (word.at(0) == ' ') {
-                word.erase(0, 1); 
+            if (word.at(word.size() - 1) == '\n') {
+                std::cout << "erase that shit" << std::endl;
+                word.erase(word.size() - 1, 1);
             }
-            if (word.at(word.size() - 1) == ' ') {
-                word.erase(word.size() - 1, 1); 
-            }
+            //std::cout << word << " " << count << std::endl;
             articleTitles.insert(word);   
             linkToId[word] = count;
-            std::cout << word << " " << count << std::endl;
             idToLink[count] = word;
             count++;      
         }
     }
-    std::cout << "al id: " << linkToId["Bibliography of Joe Biden"] << std::endl;
+    std::cout << "al id: " << linkToId["Kennedy family"] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
     bool odd = true; 
@@ -52,14 +50,22 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
                         process.push_back(c); 
                     }
                 }
+                if (linkToId.count(process) == 1) {
+                    tempvect.push_back(linkToId[process]); 
+                }
                 odd = true; 
                 int curwordint = linkToId[curword];
                 //std::cout << "curword int: " << curwordint << std::endl;
-                directedAdjacencyList[curwordint] = tempvect;
-            }
+                if (curwordint != 0) { 
+                   directedAdjacencyList[curwordint] = tempvect; 
+                }
+            }               
         }
     }
     std::cout << directedAdjacencyList.size() << std::endl;
+    for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
+        std::cout << directedAdjacencyList[1].at(i) << std::endl;
+    }
 }
 
 std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
