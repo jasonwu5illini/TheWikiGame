@@ -6,12 +6,8 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     std::string word;
     int count = 1; 
     if (wordsFile.is_open()) {
-        std::cout << "file open" << std::endl;
+        //std::cout << "file open" << std::endl;
         while (getline(wordsFile, word)) {
-            if (word.at(word.size() - 1) == '\n') {
-                std::cout << "erase that shit" << std::endl;
-                word.erase(word.size() - 1, 1);
-            }
             //std::cout << word << " " << count << std::endl;
             articleTitles.insert(word);   
             linkToId[word] = count;
@@ -26,7 +22,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     bool odd = true; 
     std::string curword = "";
     if (wordsFile1.is_open()) {
-        std::cout << "wordsfile1 open" << std::endl;
+        //std::cout << "wordsfile1 open" << std::endl;
         while (getline(wordsFile1, line)) { 
             if(odd) {
                 curword = line; 
@@ -63,7 +59,8 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             }               
         }
     }
-    std::cout << directedAdjacencyList.size() << std::endl;
+    std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
+    std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
     for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
         std::cout << directedAdjacencyList[1].at(i) << std::endl;
     }
