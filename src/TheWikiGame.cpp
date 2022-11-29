@@ -19,7 +19,8 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             count++;      
         }
     }
-    std::cout << "al id: " << linkToId["Kennedy family"] << std::endl;
+    std::cout << "Bushism id: " << linkToId["Bushism"] << std::endl;
+    std::cout << "This should be Bushism: " << idToLink[111] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
     bool odd = true; 
