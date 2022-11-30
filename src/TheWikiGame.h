@@ -16,5 +16,4 @@ class TheWikiGame{
         std::map<std::string, int>linkToId;
         std::map<int, std::string>idToLink;
         std::map<int, std::vector<int>>directedAdjacencyList;
-        std::set<std::string> articleTitles; 
 };
