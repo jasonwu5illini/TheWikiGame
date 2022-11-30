@@ -15,7 +15,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
         }
     }
     std::cout << "Bushism id: " << linkToId["Bushism"] << std::endl;
-    std::cout << "This should be Bushism: " << idToLink[111] << std::endl;
+    std::cout << "This should be Bushism: " << idToLink[610] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
     bool odd = true; 
@@ -24,44 +24,48 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
         //std::cout << "wordsfile1 open" << std::endl;
         while (getline(wordsFile1, line)) { 
             if(odd) {
-                curword = line; 
-                //std::cout << "curword: " << curword << std::endl;
-                if (curword.at(0) == ' ') {
-                    curword.erase(0, 1); 
-                }
-                if (curword.at(curword.size() - 1) == ' ') {
-                    curword.erase(curword.size() - 1, 1); 
-                }
-                odd = false; 
-            } else { 
-                std::vector<int> tempvect; 
-                std::string process = "";
-                for (char c : line) { 
-                    if (c == ',') { 
-                        if (linkToId.count(process) == 1) {
-                           tempvect.push_back(linkToId[process]); 
-                        }
-                        process = ""; 
-                    } else {
-                        process.push_back(c); 
+                if (line != "\n") {
+                    curword = line; 
+                    //std::cout << "curword: " << curword << std::endl;
+                    if (curword.at(0) == ' ') {
+                        curword.erase(0, 1); 
                     }
+                    if (curword.at(curword.size() - 1) == ' ') {
+                        curword.erase(curword.size() - 1, 1); 
+                    }
+                    odd = false;                     
                 }
-                if (linkToId.count(process) == 1) {
-                    tempvect.push_back(linkToId[process]); 
-                }
-                odd = true; 
-                int curwordint = linkToId[curword];
-                //std::cout << "curword int: " << curwordint << std::endl;
-                if (curwordint != 0) { 
-                   directedAdjacencyList[curwordint] = tempvect; 
+            } else { 
+                if (line != "\n") {
+                    std::vector<int> tempvect; 
+                    std::string process = "";
+                    for (char c : line) { 
+                        if (c == ',') { 
+                            if (linkToId.count(process) == 1) {
+                            tempvect.push_back(linkToId[process]); 
+                            }
+                            process = ""; 
+                        } else {
+                            process.push_back(c); 
+                        }
+                    }
+                    if (linkToId.count(process) == 1) {
+                        tempvect.push_back(linkToId[process]); 
+                    }
+                    odd = true; 
+                    int curwordint = linkToId[curword];
+                    //std::cout << "curword int: " << curwordint << std::endl;
+                    if (curwordint != 0) { 
+                        directedAdjacencyList[curwordint] = tempvect; 
+                    }                    
                 }
             }               
         }
     }
     std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
     std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
-    for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
-        std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
+    for (int i = 0; i < directedAdjacencyList[610].size(); i++) {
+        std::cout << idToLink[directedAdjacencyList[610].at(i)] << std::endl;
     }
 }
 

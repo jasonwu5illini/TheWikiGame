@@ -11,7 +11,7 @@ with open('rtitles.txt', 'r', encoding='UTF-8') as r:
 			try: 
 				p = wikipedia.page(title)
 			except: 
-				f.write("exception occured: " + title)
+				f.write("exception occurred: " + title)
 				f.write("\n")
 			else:
 				list = p.links 
