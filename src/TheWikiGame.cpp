@@ -2,6 +2,7 @@
 #include <queue>
 
 TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
+    //if constructor is not working properly, copy and paste the contents of the two files into new files and use them
     ifstream wordsFile(titleFile);
     std::string word;
     int count = 1; 
