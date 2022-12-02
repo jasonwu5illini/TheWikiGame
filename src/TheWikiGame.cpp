@@ -53,8 +53,11 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
                         tempvect.push_back(linkToId[process]); 
                     }
                     odd = true; 
+                    
                     int curwordint = linkToId[curword];
+                    //std::cout<<curword<<std::endl;
                     //std::cout << "curword int: " << curwordint << std::endl;
+
                     if (curwordint != 0) { 
                         directedAdjacencyList[curwordint] = tempvect; 
                     }                    
@@ -65,35 +68,73 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
     std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
     for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
-        std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
+        //std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
     }
 }
 
-std::vector<std::vector<string>> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
+std::vector<std::string> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
+
+    if(linkToId.count(startLocation) == 0 || linkToId.count(endLocation) == 0){
+        std::cout<<"Starting or ending location is invalid"<<std::endl;
+        return std::vector<string>();
+    }
+
+    std::vector<string> shortestPath;
     std::queue<int>bfsQueue;
     int startId = linkToId[startLocation];
+    int endId = linkToId[endLocation];
+    
     bfsQueue.push(startId);
     int dist = 0;
     bool foundPath = false;
-    while(dist < 6 && !foundPath){
+    bool visited[idToLink.size()];
+    int distances[idToLink.size()];
+    int prev[idToLink.size()];
+
+    for(int i = 0; i < idToLink.size(); i++){
+        visited[i] = false;
+        distances[i] = 100000;
+        prev[i] = -1;
+    }
+
+    visited[startId] = true;
+    distances[startId] = 0;
+
+    while(!foundPath && !bfsQueue.empty()){
         int degreeSize = bfsQueue.size();
         for(int j = 0; j < degreeSize; j++){
-            int currentPage = bfsQueue.front();
+            int currentId = bfsQueue.front();
             bfsQueue.pop();
-            vector<int>linksToOtherPages = directedAdjacencyList[currentPage];
+            std::vector<int>linksToOtherPages = directedAdjacencyList[currentId];
             for(int k = 0; k < linksToOtherPages.size(); k++){
                 int adjacentId = linksToOtherPages[k];
-                string s = idToLink[adjacentId];
-                if(s == endLocation){
-                    foundPath = true;
+                if(!visited[adjacentId]){
+                    bfsQueue.push(adjacentId);
+                    visited[adjacentId] = true;
+                    distances[adjacentId] = distances[currentId]+1;
+                    prev[adjacentId] = currentId;
+                    if(adjacentId == endId){
+                        foundPath = true;
+                    }
                 }
             }
         }
         dist++;
     }
-    
-    std::cout<<dist<<std::endl;
-    return std::vector<std::vector<string>>();
+    if(!foundPath){
+        std::cout<<"No paths were found between "<<startLocation<< " and " <<endLocation<<std::endl;
+        return std::vector<string>();
+    }
+    else{
+        int backtrack = endId;
+        shortestPath.push_back(idToLink[endId]);
+        while(prev[backtrack] != -1){
+            shortestPath.push_back(idToLink[prev[backtrack]]);
+            backtrack = prev[backtrack];
+        }
+        std::cout<<"The shortest path between "<<startLocation<< " and " <<endLocation<<" is " << dist<< " steps"<<std::endl;
+        return shortestPath;
+    }
 }
 
 std::vector<std::vector<string>> TheWikiGame::djikstra(std::string startLocation, std::string endLocation) {

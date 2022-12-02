@@ -9,7 +9,7 @@ using namespace std;
 class TheWikiGame{
     public:
         TheWikiGame(std::string titleFile, std::string linksFile); 
-        std::vector<std::vector<std::string>> bfs(std::string startLocation, std::string endLocation);
+        std::vector<std::string> bfs(std::string startLocation, std::string endLocation);
         std::vector<std::vector<std::string>> djikstra(std::string startLocation, std::string endLocation);
         int test();
     private:
