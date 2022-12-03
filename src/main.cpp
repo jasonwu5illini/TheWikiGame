@@ -1,9 +1,10 @@
 #include "TheWikiGame.h" 
 #include <iostream>
 int main() {
+    //REMEMBER TO CHANGE PATHING EVERYTIME, IT IS DIFFERENT FOR EVERYONE
     //TheWikiGame test = TheWikiGame("/workspaces/cs225/TheWikiGame/ArticleT.txt", "/workspaces/cs225/TheWikiGame/ArticleLinks.txt");
-    TheWikiGame test = TheWikiGame("/workspaces/CS225 Labs/TheWikiGame/dank.txt", "/workspaces/CS225 Labs/TheWikiGame/dank2.txt");
-    std::vector<std::string> path = test.bfs("Andrew Johnson", "Statue of Harry S. Truman");
+    TheWikiGame test = TheWikiGame("/workspaces/cs225/TheWikiGame/ArticleTJason.txt", "/workspaces/cs225/TheWikiGame/ArticleLinksJason.txt");
+    std::vector<std::string> path = test.bfs("https://en.wikipedia.org/wiki/Joe_Biden", "https://en.wikipedia.org/wiki/George_Washington");
     for(auto it = path.begin(); it != path.end(); it++){
         std::cout<<*it<<std::endl;
     }

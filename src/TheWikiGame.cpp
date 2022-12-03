@@ -10,12 +10,23 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
         //std::cout << "file open" << std::endl;
         while (getline(wordsFile, word)) {
             //std::cout << word << " " << count << std::endl;
-            linkToId[word] = count;
-            idToLink[count] = word;
+            std::string url = "https://en.wikipedia.org/wiki/";
+            std::string uword = "";
+            for (char ch : word) { 
+                if (ch == ' ') {
+                    uword.push_back('_');
+                } else { 
+                    uword.push_back(ch);
+                }
+            }
+            url = url+uword;
+            linkToId[url] = count;
+            idToLink[count] = url;
+            std::cout << url << std::endl;
             count++;      
         }
     }
-    std::cout << "Bushism id: " << linkToId["Bushism"] << std::endl;
+    std::cout << "Bushism id: " << linkToId["https://en.wikipedia.org/wiki/Bushism"] << std::endl;
     std::cout << "This should be Bushism: " << idToLink[111] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
@@ -28,12 +39,16 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
                 if (line != "\n") {
                     curword = line; 
                     //std::cout << "curword: " << curword << std::endl;
-                    if (curword.at(0) == ' ') {
-                        curword.erase(0, 1); 
+                    std::string url = "https://en.wikipedia.org/wiki/";
+                    std::string uword = "";
+                    for (char ch : curword) { 
+                        if (ch == ' ') {
+                            uword.push_back('_');
+                        } else { 
+                            uword.push_back(ch);
+                        }
                     }
-                    if (curword.at(curword.size() - 1) == ' ') {
-                        curword.erase(curword.size() - 1, 1); 
-                    }
+                    curword = url+uword;
                     odd = false;                     
                 }
             } else { 
@@ -43,7 +58,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
                     for (char c : line) { 
                         if (c == ',') { 
                             if (linkToId.count(process) == 1) {
-                            tempvect.push_back(linkToId[process]); 
+                                tempvect.push_back(linkToId[process]); 
                             }
                             process = ""; 
                         } else {
@@ -69,7 +84,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
     std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
     for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
-        //std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
+        std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
     }
 }
 
