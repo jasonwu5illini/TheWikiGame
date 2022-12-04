@@ -22,12 +22,11 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             url = url+uword;
             linkToId[url] = count;
             idToLink[count] = url;
-            std::cout << url << std::endl;
             count++;      
         }
     }
     std::cout << "Bushism id: " << linkToId["https://en.wikipedia.org/wiki/Bushism"] << std::endl;
-    std::cout << "This should be Bushism: " << idToLink[111] << std::endl;
+    std::cout << "This should be Bushism: " << idToLink[1663] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
     bool odd = true; 
