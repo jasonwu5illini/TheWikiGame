@@ -25,7 +25,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             count++;      
         }
     }
-    std::cout << "Bushism id: " << linkToId["https://en.wikipedia.org/wiki/Bushism"] << std::endl;
+    std::cout << "Bushism id: " << linkToId["https://en.wikipedia.org/wiki/Nanny_and_Nanko"] << std::endl;
     std::cout << "This should be Bushism: " << idToLink[1663] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
@@ -82,8 +82,8 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     }
     std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
     std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
-    for (int i = 0; i < directedAdjacencyList[1].size(); i++) {
-        std::cout << idToLink[directedAdjacencyList[1].at(i)] << std::endl;
+    for (int i = 0; i < directedAdjacencyList[1666].size(); i++) {
+        std::cout << idToLink[directedAdjacencyList[1666].at(i)] << std::endl;
     }
 }
 
