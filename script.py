@@ -1,4 +1,3 @@
-
 from mediawiki import MediaWiki
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
@@ -17,6 +16,14 @@ with open('rtitles.txt', 'r', encoding='UTF-8') as r:
 			else:
 				listofs = p.sections
 				str = ""
+				tlist1 = p.parse_section_links(None)
+				if tlist1 != None: 
+					for a in tlist1: 
+						tt1 = a[0]
+						if len(tt1) != 0: 
+							if tt1[0] != '[' and tt1[0] != '/':
+								str = str + a[1]
+								str = str + ","
 				for i in listofs: 
 					if i == 'References':
 						break
@@ -26,10 +33,11 @@ with open('rtitles.txt', 'r', encoding='UTF-8') as r:
 					if tlist != None: 
 						for j in tlist: 
 							tt = j[0]
-							if tt[0] != '[' and tt[0] != '/':
-								str = str + j[1]
-								str = str + ","
+							if len(tt1) != 0: 
+								if tt[0] != '[' and tt[0] != '/':
+									str = str + j[1]
+									str = str + ","
 				f.write(title)
 				f.write(str)
-				f.write("\n") #because of how it works, manually make a new line between the last article title and the links that it has
+				f.write("\n")
 	
