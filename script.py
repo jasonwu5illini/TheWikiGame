@@ -1,3 +1,4 @@
+#takes an hour to generate file with 1667 articles, need to make new line on last title manually
 from mediawiki import MediaWiki
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
