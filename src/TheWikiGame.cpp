@@ -7,9 +7,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     std::string word;
     int count = 1;  //arbitrary id assigned to each article
     if (wordsFile.is_open()) {
-        //std::cout << "file open" << std::endl;
         while (getline(wordsFile, word)) { //get each title, one title per line
-            //std::cout << word << " " << count << std::endl;
             std::string url = "https://en.wikipedia.org/wiki/"; 
             std::string uword = ""; //convert title to url
             for (char ch : word) { 
@@ -25,19 +23,15 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             count++;     // change the id
         }
     }
-    //std::cout << "Bushism id: " << linkToId["https://en.wikipedia.org/wiki/Nanny_and_Nanko"] << std::endl;
-    //std::cout << "This should be Bushism: " << idToLink[1663] << std::endl;
     ifstream wordsFile1(linksFile);
     std::string line;
     bool odd = true; 
     std::string curword = "";
     if (wordsFile1.is_open()) {
-        //std::cout << "wordsfile1 open" << std::endl;
         while (getline(wordsFile1, line)) { 
             if(odd) { //the file is formatted with titles on odd lines and links on even lines, use boolean to switch between the two
                 if (line != "\n") {
                     curword = line; 
-                    //std::cout << "curword: " << curword << std::endl;
                     std::string url = "https://en.wikipedia.org/wiki/";
                     std::string uword = "";
                     for (char ch : curword) { 
@@ -70,8 +64,7 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
                     odd = true; 
                     
                     int curwordint = linkToId[curword]; //get the id associated with current article
-                    //std::cout<<curword<<std::endl;
-                    //std::cout << "curword int: " << curwordint << std::endl;
+
 
                     if (curwordint != 0) { 
                         directedAdjacencyList[curwordint] = tempvect; //if this id is valid, map the article and associated links
@@ -80,13 +73,23 @@ TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
             }               
         }
     }
-    //std::cout << "size of map: " << directedAdjacencyList.size() << std::endl;
-    std::cout << "printing page ids of pages linked on Abraham Lincoln (page ID 1)." << std::endl;
-    for (int i = 0; i < directedAdjacencyList[1666].size(); i++) {
-        std::cout << idToLink[directedAdjacencyList[1666].at(i)] << std::endl;
-    }
 }
 
+
+std::string TheWikiGame::getLinkByID(int id) {
+    if (idToLink.count(id) == 0) {
+        return "ID not valid";
+    } else { 
+        return idToLink[id];
+    }
+}
+int TheWikiGame::getIDByLink(std::string url) {
+    if (linkToId.count(url) == 0) {
+        return -1;
+    } else { 
+        return linkToId[url];
+    }
+}
 std::vector<std::string> TheWikiGame::bfs(std::string startLocation, std::string endLocation) {
 
     if(linkToId.count(startLocation) == 0 || linkToId.count(endLocation) == 0){

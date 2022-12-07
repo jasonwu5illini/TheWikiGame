@@ -11,6 +11,8 @@ class TheWikiGame{
         TheWikiGame(std::string titleFile, std::string linksFile); 
         std::vector<std::string> bfs(std::string startLocation, std::string endLocation);
         std::vector<std::vector<std::string>> djikstra(std::string startLocation, std::string endLocation);
+        std::string getLinkByID(int id);
+        int getIDByLink(std::string url);
     private:
         std::map<std::string, int>linkToId;
         std::map<int, std::string>idToLink;
