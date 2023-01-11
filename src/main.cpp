@@ -1,16 +1,25 @@
-#include "TheWikiGame.h" 
+#pragma once
+#include <map>
+#include <unordered_map>
+#include <vector>
 #include <iostream>
-int main() {
-    //REMEMBER TO CHANGE PATHING EVERYTIME, IT IS DIFFERENT FOR EVERYONE
-    //TheWikiGame test = TheWikiGame("/workspaces/CS225 Labs/TheWikiGame/ArticleTKevin.txt", "/workspaces/CS225 Labs/TheWikiGame/ArticleLinksKevin.txt");
-    //std::vector<std::string> path = test.bfs("https://en.wikipedia.org/wiki/Nanny_and_Nanko", "https://en.wikipedia.org/wiki/Lee_Harvey_Oswald");
-    TheWikiGame test = TheWikiGame("/workspaces/cs225/TheWikiGame/ArticleTJason.txt", "/workspaces/cs225/TheWikiGame/ArticleLinksJason.txt");
-    std::vector<std::string> path = test.bfs("https://en.wikipedia.org/wiki/Nanny_and_Nanko", "https://en.wikipedia.org/wiki/Nanny_and_Nanko");
-    for(auto it = path.begin(); it != path.end(); it++){
-        std::cout<<*it<<std::endl;
-    }
-    test.pageRank(0.85, 1000, 10);
-    test.resetPageRank();
-    test.pageRank(0.85, 5, 10);
-    return 1;
-} 
+#include <fstream>
+#include <set>
+using namespace std;
+
+class TheWikiGame{
+    public:
+        TheWikiGame(std::string titleFile, std::string linksFile); 
+        std::vector<std::string> bfs(std::string startLocation, std::string endLocation);
+        std::vector<std::string> dijkstra(std::string startLocation, std::string endLocation);
+        vector<pair<int, double>> pageRank(double dampingFactor, int depth, int topN);
+        void resetPageRank();
+        std::string getLinkByID(int id);
+        int getIDByLink(std::string url);
+    private:
+        std::unordered_map<std::string, int>linkToId;
+        std::unordered_map<int, std::string>idToLink;
+        std::unordered_map<int, std::vector<int>>directedAdjacencyList;
+        static bool cmp(pair<int, double>& a, pair<int, double>& b);
+        std::unordered_map<int, double>idToPageRank;
+};
