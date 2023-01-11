@@ -1,5 +1,6 @@
 # The Wiki Game
 
+This is a fork, the actual one is at: https://github.com/Kliu2003/TheWikiGame
 # ATTENTION: If the constructor doesn't work properly(not populating the data structures), copy and paste the files into new files and use them in the constructor. Although everything should theoretically be the same, this is done to resolve weird encoding errors that lead to results such as Abraham Lincoln being != Abraham Lincoln.
 
 Wikipedia is a multilingual free online encyclopedia written and maintained by a community of volunteers through open collaboration and a wiki-based editing system. A fantastic way to entertain yourself when you’re bored is to play a game called the Wiki Game (more information can be found at https://www.thewikigame.com/group). The objective of the game is to traverse from one randomly generated Wikipedia page to another in either the shortest amount of time or the shortest number of clicks. However, due to the imperfection of the human mind, it is very unlikely that the user will be able to find the shortest path from one page to another. In our project, we will use graph algorithms and a subset of the articles on English Wikipedia to find the series of pages that takes the least amount of clicks. We will also visualize this path.  
