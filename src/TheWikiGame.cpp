@@ -5,6 +5,7 @@
 TheWikiGame::TheWikiGame(std::string titleFile, std::string linksFile) {
     //if constructor is not working properly, copy and paste the contents of the two files into new files and use them
     ifstream wordsFile(titleFile);
+    //b
     std::string word;
     int count = 1;  //arbitrary id assigned to each article
     if (wordsFile.is_open()) {
